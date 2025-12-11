@@ -1,0 +1,41 @@
+{% block content %}
+    <nav class="navbar sticky-top bg-body-secondary">
+        <div class="container-fluid">
+            <div class="navbar-nav">
+            </div>
+            <form class="d-flex" role="none">
+                <a class="btn border float-end mx-4 nav_link" href="my_tickets" type="button"><i class="bi bi-person-lines-fill"></i> My Tickets</a>
+                <button class="float-end btn border theme-button hideInLight" id="lightModeToggleButton" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="bi bi-sun-fill"></i></button>
+                <button class="float-end btn theme-button hideInDark" id="darkModeToggleButton" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="bi bi-moon-stars-fill"></i></button>
+            </form>
+        </div>
+    </nav>
+<div class="p-4 bg-dark-subtle" id="header">
+	<h1 class="display-1 text-center">Ticketmaster</h1>
+	<h3 class="fw-bold text-center mb-4">Quickly find tickets near you</h3>
+    <div class="container w-100 mx-auto">
+        <div class="row mx-auto justify-content-center">
+            <div class="col-lg-8 col-md-12">
+                <form action="{% url 'search' %}" name="searchForm" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3 mx-auto">
+                    <label for="id_genre"></label>
+                    <input class="form-control" list="genreDataList" id="id_genre" name="genre" placeholder="Search by Genre..." maxlength="20" required="">
+                    <datalist id="genreDataList">
+                        <option value="Music">
+                        <option value="Sports">
+                        <option value="Family">
+                        <option value="Arts & Theater">
+                        <option value="Concerts">
+                        <option value="Comedy">
+                        <option value="Dance">
+                    </datalist>
+                    <input type="text" class="form-control" placeholder="Search by City..."  id="id_city" name="city" maxlength="20" aria-label="Search Box" aria-describedby="button-search" required="">
+                    <button class="btn btn-primary" type="submit" value="send" id="button-search">Search</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

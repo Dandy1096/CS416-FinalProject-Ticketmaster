@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body %}
+    <nav class="navbar sticky-top bg-body-secondary">
+        <div class="container-fluid">
+            <div class="navbar-nav">
+                <a class="nav-link" href="index"><i class="bi bi-arrow-left"></i> Back</a>
+            </div>
+            <form class="d-flex" role="none">
+                <a class="btn border float-end mx-4 nav_link disabled" aria-disabled="true" disabled type="button"><i class="bi bi-person-lines-fill"></i> My Tickets</a>
+                <button class="float-end btn border theme-button hideInLight" id="lightModeToggleButton" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="bi bi-sun-fill"></i></button>
+                <button class="float-end btn theme-button hideInDark" id="darkModeToggleButton" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="bi bi-moon-stars-fill"></i></button>
+            </form>
+        </div>
+    </nav>
+    <div class="bg-dark-subtle p-5">
+    <h1 class="display-1 text-center">My Saved Tickets</h1>
+    <h4 class="display-6 text-center">
+    {% if numTickets == 0 %}
+    You have no saved tickets.
+    {% elif numTickets == 1 %}
+        Found 1 saved ticket.
+    {% else %}
+        Found ({{ numTickets }}) saved tickets.
+    {% endif %}
+    </h4>
+    </div>
+    <div class="container">
+        {%  for ticket in tickets %}
+            {%  include 'myTicket.html' with ticket=ticket csrfToken=csrfToken %}
+        {% endfor %}
+        {% if priceRangeMin != 0 %}
+        <div class="container my-4 border shadow rounded">
+            <div class="row">
+                <div class="column align-elements-right text-end">
+                    ${{ priceRangeMin }} - ${{ priceRangeMax }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

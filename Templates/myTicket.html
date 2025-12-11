@@ -1,0 +1,56 @@
+{% block content %}
+<div class="randall-card container my-4 border shadow rounded fadeInDown">
+    <div class="row d-flex">
+        <div class="col-lg-3 col-md-8 p-0">
+            <img class="img-fluid rounded-start w-100" alt="event image" src="{{ ticket.imgUrl }}">
+        </div>
+        <div class="col-lg-6 col-md-4 p-3 d-flex flex-column">
+            <h3 id="cardTemplateTitle" class="fw-bold flex-fill">{{ ticket.title }}</h3>
+            <div class="d-lg-none d-md-block">
+                <h4 id="text-primary-emphasis fw-bold">{{ ticket.date }}</h4>
+                <h4 id="text-primary-emphasis fw-bold">{{ ticket.time }}</h4>
+            </div>
+            <h4 id="cardTemplateLocation" class="text-secondary">{{ ticket.venue }}</h4>
+            <p id="cardTemplateStreetAddress" class="text-secondary my-0">{{ ticket.address }}</p>
+            <p id="cardTemplateCityState" class="text-secondary my-0">{{ ticket.cityState }}</p>
+        </div>
+        <div class="col-lg-3 col-md-12 p-3 d-flex">
+            <div class="row w-100 d-flex p-0 justify-content-lg-end justify-content-md-center text-lg-end text-md-center">
+                <div class="col-lg-12 col-md-6 align-self-start align-self-md-auto">
+                    <form action="{% url 'delete_ticket' id=ticket.id %}" method="POST">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrfToken }}">
+                        <button class="col col-lg-8 col-md-12 btn btn-outline-primary bg-primary-subtle mb-3" type="submit" value="Save"><i class="bi bi-bookmark-dash-fill"></i> Delete Ticket</button>
+                    </form>
+                </div>
+                <div class="col-lg-12 d-lg-block d-none">
+                    <h4 id="cardTemplateDate" class="text-primary-emphasis d-lg-block d-md-none fw-bold">{{ ticket.date }}</h4>
+                    <h5 id="cardTemplateTime" class="text-primary-emphasis d-lg-block d-md-none fw-bold">{{ ticket.time }}</h5>
+                </div>
+                <div class="col-lg-12 col-md-6 align-self-end align-self-md-auto">
+                    <a href="{{ ticket.url }}" class="col col-lg-8 col-md-12 bg-primary-subtle btn btn-outline-primary" role="button"><i class="bi bi-ticket-detailed-fill"></i> Explore</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!--
+        <div class="col-lg-3 col-md-12 p-3 align-elements-right text-end d-flex container flex-column">
+            <div class="row d-flex flex-column">
+                <div class="col-lg-12 col-md-6">
+                <form action="{% url 'delete_ticket' id=ticket.id %}" method="POST">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrfToken }}">
+                    <button class="w-100 btn btn-outline-primary bg-primary-subtle mb-3" type="submit" value="Save"><i class="bi bi-bookmark-dash-fill"></i> Delete Ticket</button>
+                </form>
+                </div>
+                <h4 id="cardTemplateDate" class="text-primary-emphasis d-lg-block d-md-none fw-bold">{{ ticket.date }}</h4>
+                <h5 id="cardTemplateTime" class="text-primary-emphasis d-lg-block d-md-none fw-bold">{{ ticket.time }}</h5>
+                <div class="col-lg-12 col-md-6 mt-auto align-self-baseline">
+                    <a id="cardTemplateTicketButton" href="{{ ticket.url }}" class="w-100 btn btn-outline-primary bg-primary-subtle mt-auto" role="button"><i class="bi bi-ticket-detailed-fill"></i> Find Tickets</a>
+                </div>
+            </div>
+        </div>
+        -->
+    </div>
+</div>
+
+{% endblock %}

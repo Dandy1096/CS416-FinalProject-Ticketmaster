@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+{%  include 'header.html' %}
+{% if cards.count != 0 %}
+<div class="container p-4">
+	<div class="row rounded border bg-body-secondary shadow">
+		<div class="column px-4" id="cardContainer">
+            {% for card in cards %}{{ card }}{%  endfor %}
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
